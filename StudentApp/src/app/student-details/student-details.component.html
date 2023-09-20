@@ -1,0 +1,39 @@
+<ng-container *ngIf="show">
+  <app-student-form></app-student-form>
+</ng-container>
+  <button (click)="toggle()" id="bt" class="btn btn-primary">
+    {{buttonName}}
+</button>
+  <table class="table table-hover">
+      <thead class="thead-primary">
+       <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Mobile</th>
+        <th>City</th>
+        <th>State</th>
+        <th>Actions</th>
+       </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stud of studService.listStudent">
+          <td>{{stud.name}}</td>
+          <td>{{stud.email}}</td>
+          <td>{{stud.mobile}}</td>
+          <td>{{stud.cityName}}</td>
+          <td>{{stud.stateName}}</td>
+          <td>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Actions
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#" (click)="populateStudent(stud)">Edit</a>
+                  <a class="dropdown-item" href="#" (click)="delete(stud.id)">Delete</a>
+
+                </div>
+              </div>
+          </td>
+        </tr>
+      </tbody>
+  </table>

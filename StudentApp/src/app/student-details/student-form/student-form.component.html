@@ -1,0 +1,72 @@
+<div class="formAdd bg-success">
+    <form autocomplete="off" #myForm="ngForm" (ngSubmit)="myForm.form.valid && submit(myForm)">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <input type="hidden" name="id" [value]="studService.studentData.id">
+
+                    <label for="name" class="float-left">Name</label>
+                    <div *ngIf="name.invalid && (name.touched || name.dirty)" class="float-right">
+                        <p class="text-danger">Required</p>
+                    </div>
+                    <input type="text" name="name" class="form-control" placeholder="Enter Name" #name="ngModel" [(ngModel)]="studService.studentData.name" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="name" class="float-left">Email</label>
+                    <div *ngIf="email.invalid && (email.touched || email.dirty)" class="float-right">
+                        <p class="text-danger">Required</p>
+                    </div>
+                    <input type="text" name="email" class="form-control" placeholder="Enter Email" #email="ngModel" [(ngModel)]="studService.studentData.email" required>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="name" class="float-left">Mobile</label>
+                    <div *ngIf="mobile.invalid && (mobile.touched || mobile.dirty)" class="float-right">
+                        <p class="text-danger">Required</p>
+                    </div>
+                    <input type="tel" name="mobile" class="form-control" placeholder="Enter Mobile" #mobile="ngModel" [(ngModel)]="studService.studentData.mobile" required>
+                </div>
+
+
+            </div>
+<div class="row">&nbsp;</div>
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                <label for="state" class="label float-left">State</label>
+                <select id="stateId" name="stateId" class="form-control" (change)="onStateChange(selState.value)" [(ngModel)]="studService.studentData.stateId" #selState>
+                    <option value="0">Please Select</option>
+                    <option  *ngFor="let state of studService.listState" [ngValue]="state.id">{{ state.state_Name }}</option>
+                </select>
+              </div>
+            </div>
+
+
+            <div class="col-md-3">
+              <div class="form-group">
+              <label for="city" class="label float-left">City</label>
+              <select #cityID id="cityId" name="cityId" ngModel class="form-control" [(ngModel)]="studService.studentData.cityId">
+                  <option value="0">Please Select</option>
+                  <option  *ngFor="let city of this.studService.listCity" [ngValue]="city.id">{{ city.city_Name }}</option>
+              </select>
+            </div>
+          </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-8"></div>
+                <div class="col-md-2">
+                    <button type="submit" [disabled]="selState.value==='0'" class="btn btn-info btn-block form-control">Save</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="reset" class="btn btn-danger btn-block form-control">Cancel</button>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+ </div>
